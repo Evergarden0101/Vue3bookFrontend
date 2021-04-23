@@ -12,11 +12,13 @@ import ElementPlus from "element-plus";
 import "element-plus/lib/theme-chalk/index.css";
 import "dayjs/locale/zh-cn";
 import locale from "element-plus/lib/locale/lang/zh-cn";
+import moment from 'moment'; //导入模块
+moment.locale('zh-cn');
 
 axios.defaults.baseURL='/api'
-// Vue.prototype.$axios  = Axios
-// app.config.globalProperties.$axios = axios
-store.commit('setUserInfo', {token:'1',usertype:"teacher"})
+
+store.commit('setUserInfo', {token:'1',usertype:"student"})
+
 createApp(App)
   .use(ElementPlus, { locale })
   .use(store)

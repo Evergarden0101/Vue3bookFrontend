@@ -276,7 +276,7 @@
                         <el-col
                           :span="20"
                           @click="seePost(item)"
-                          style="padding-left: 15px;height: 30px;text-align: left;border-radius: 6px;padding-top:15px"
+                          style="padding-left: 15px;height: 30px;text-align: left;border-radius: 6px;padding-top:10px"
                         >
                           <el-link
                             @click="seePost(item)"
@@ -295,7 +295,7 @@
                             id="star"
                             type="primary"
                             size="small"
-                            style="right:2px;float: top;margin-top: 10px;height: 30px;"
+                            style="right:2px;float: top;margin-top: 10px"
                             ><i class="el-icon-star-off"></i
                           ></el-button>
                           <el-button
@@ -321,7 +321,7 @@
                             <el-button
                               type="primary"
                               size="small"
-                              style="left: 1px;float: top;margin-top: 10px"
+                              style="left: 1px;float: top;margin-top: 14px"
                             >
                               <i class="el-icon-more-outline"></i>
                             </el-button>
@@ -475,7 +475,6 @@ export default {
 
     const store = useStore();
     const data = reactive({
-      //////自用
       tabPosition: "left",
       newTitle: "",
       newContent: "",
@@ -491,21 +490,14 @@ export default {
       currentPage: 1,
 
       /////请求
-      circle: { name: "课程名称", detail: "课程介绍" },
-      classId: "1",
-      rules: "圈子规则",
+      circle: {},
+      classId: "",
+      rules: "",
       userInfo: null,
       amount: 0,
       posts: [
-        {
-          title: "帖子标题",
-          detail: "帖子内容",
-          iselite: true,
-          istop: true,
-          id: 1,
-        },
       ],
-      addOrNot: 3, //0=没加，1=申请了，2=加入，3=老师
+      addOrNot: 2, //0=没加，1=申请了，2=加入，3=老师
       userType: "student",
       stunum: 60,
     });
@@ -617,7 +609,7 @@ export default {
         },
       }).then((res) => {
         if (res.data.code == 1001) {
-          data.addOrNot = res.data.data; //undone
+          data.addOrNot = res.data.data; 
           if (data.userType != "student") {
             document
               .getElementById("addbtn")
@@ -695,7 +687,6 @@ export default {
       }).then((res) => {
         if (res.data.code == 1001) {
           let staron = "starIcon" + item.id;
-          //document.getElementById(''+staron).setAttribute("class", "el-icon-star-on")//undone v-if
           ElMessage({
             showClose: true,
             type: "success",

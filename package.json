@@ -11,6 +11,7 @@
     "core-js": "^3.6.5",
     "element-plus": "^1.0.2-beta.40",
     "es6-promise": "^4.2.8",
+    "moment": "^2.29.1",
     "video.js": "^7.11.8",
     "vue": "^3.0.0",
     "vue-axios": "^3.2.4",
