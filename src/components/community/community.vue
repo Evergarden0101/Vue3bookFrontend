@@ -1,13 +1,13 @@
 <template>
+  <navbar />
   <div class="community-container">
-    <!--    <navbar/>-->
     <el-container>
       <el-main>
         <!--      圈子内容-->
         <el-row class="community-body">
           <el-tabs type="border-card">
             <el-tab-pane label="已加入圈子">
-              <el-row>
+              <el-row style="min-width:1100px">
                 <el-col
                   :span="6"
                   class="community-list"
@@ -40,7 +40,7 @@
               </el-row>
             </el-tab-pane>
             <el-tab-pane label="所有圈子">
-              <el-row>
+              <el-row style="min-width:1100px">
                 <el-col
                   :span="6"
                   class="community-list"
@@ -75,7 +75,7 @@
           </el-tabs>
         </el-row>
         <el-row justify="end">
-          <el-col :span="8" style="float:right;margin-top: 30px;">
+          <el-col :span="8" :offset="15" style="float:right;margin-top: 30px;">
             <el-button
               v-if="userInfo.usertype == 'student'"
               type="info"
@@ -192,7 +192,7 @@
 </template>
 
 <script>
-import navbar from "../navbars/navbar";
+import navbar from "../NavHeader";
 import { computed, reactive, toRefs, onMounted, getCurrentInstance } from "vue";
 import { useRouter, useRoute } from "vue-router";
 import { useStore } from "vuex";
@@ -203,6 +203,7 @@ export default {
     const { ctx } = getCurrentInstance();
     const axios = ctx.axios;
     const route = useRoute();
+    const router = useRouter();
     // const $route = unref(ctx.$router.currentRoute);
     const store = useStore();
 
@@ -211,14 +212,14 @@ export default {
       visibleConfirm: false,
       userInfo: null,
       search_inf: "",
-      alreadyJoinCommunity: [],
+      alreadyJoinCommunity: [{ name: "课程", detail: "课程简介" }],
       //创建课程信息表单
       curriculumForm: {
         name: "", //课程名称
         detail: "", //课程介绍
         rule: "", //社区规则
       },
-      allCommunity: [],
+      allCommunity: [{ name: "课程", detail: "课程简介" }],
       applyingCommunity: [],
       teacher: {
         name: "",
@@ -351,8 +352,7 @@ export default {
       axios
         .post("/imageupload", formData, {
           headers: {
-            token: 
-            userInfo.token,
+            token: userInfo.token,
             "Content-type": "multipart/form-data",
           },
         })
@@ -380,7 +380,11 @@ export default {
       seeCommunity,
       onSubmitCon,
       uploadPhoto,
-      userInfo
+      userInfo,
+      route,
+      axios,
+      store,
+      ctx,
     };
   },
   components: {
@@ -394,7 +398,6 @@ export default {
   padding-left: 10%;
   padding-right: 10%;
   background-color: #d9ecff;
-  min-width: 100px;
   min-height: 600px;
 }
 .community-body {
@@ -412,6 +415,7 @@ export default {
   margin-bottom: 10px;
   /*background-color: red;*/
   height: 100px;
+  min-width: 200px;
 }
 .community-content {
   /*background-color: aqua;*/

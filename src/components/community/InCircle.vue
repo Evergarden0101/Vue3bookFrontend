@@ -1,4 +1,5 @@
 <template>
+  <navbar />
   <div
     style="padding-left: 10%;padding-right: 10%;background-color: #d9ecff;"
     class="wraper"
@@ -29,7 +30,7 @@
       class="myel-tabs"
     >
       <el-tab-pane label="课程" name="first">
-        <!-- <videoList/> -->
+        <videoList />
       </el-tab-pane>
       <el-tab-pane label="圈子" name="second" lazy="true" style="height: auto">
         <div style="margin: 0 5%">
@@ -105,12 +106,6 @@
                 </el-tooltip>
               </el-col>
             </el-row>
-            <!--    <el-row style="background-color: #00aeef;">-->
-            <!--      <el-col span="2" style="height:25px;background-color: black;"></el-col>-->
-            <!--      <el-col span="22" style="height:25px;background-color: #ec008c;text-align: left">-->
-            <!--        <span style="position:absolute;bottom:0;;font-size: 14px;font-weight: bold;color: #00aeef">&nbsp/教师</span>-->
-            <!--      </el-col>-->
-            <!--    </el-row>-->
 
             <el-row style="">
               <el-col :span="24" style="height:18px;"> </el-col>
@@ -120,26 +115,26 @@
               <el-col :span="24" style="height:25px;text-align: left">
                 <!-- .native -->
                 <span style="margin-left: 15px"
-                  ><el-link
+                  ><span
+                    class="switch"
                     :underline="false"
                     @click="seeposts()"
                     style="font-size: 16px;font-weight: bolder;rgba(0,0,0,0.7);"
-                    >讨论</el-link
+                    >讨论</span
                   ></span
                 >
-
                 <span v-if="addOrNot === 3" style="margin-left: 15px"
-                  ><el-link
+                  ><span
+                    class="switch"
                     :underline="false"
                     @click="seemanage()"
                     style="font-size: 16px;font-weight: bolder;rgba(0,0,0,0.7);"
-                    >成员管理</el-link
+                    >成员管理</span
                   ></span
                 >
               </el-col>
             </el-row>
           </el-card>
-
           <el-row>
             <el-col :span="17" style="min-height: 200px;border-radius: 6px;">
               <div id="postlist">
@@ -157,10 +152,6 @@
                           >创建新帖子
                         </el-col>
                       </template>
-                      <!--            <el-row-->
-                      <!--              style="padding-top:5px;height: 40px;background-color: #21ef00;border-top-right-radius: 6px;border-top-left-radius: 6px;text-align: center;font-size: 20px;font-weight: bolder;color: #00aeef">-->
-                      <!--              新&nbsp帖&nbsp子-->
-                      <!--            </el-row>-->
                       <el-row
                         style="border-top-left-radius: 6px;border-top-right-radius: 6px;padding-top:15px;height: 60px;text-align: center;font-size: 20px;font-weight: bolder;color: rgba(0,0,0,0.7)"
                       >
@@ -255,10 +246,6 @@
                           :span="2"
                           style="color: #ffbb00;font-weight: bolder;font-size: 13px;overflow: hidden"
                         >
-                          <!--                          <el-col class="intext" span="18" offset="3"-->
-                          <!--                                  style="border-radius: 4px;padding-top: 5px;height: 25px;background-color: #ff0700;">-->
-                          <!--                            TOP-->
-                          <!--                          </el-col>-->
                           <el-tag
                             v-if="item.istop === true"
                             effect="dark"
@@ -275,9 +262,6 @@
                           :span="2"
                           style="color: #ffbb00;font-weight: bolder;font-size: 13px;overflow: hidden"
                         >
-                          <!--                          <el-col class="intext" span="18" offset="3"-->
-                          <!--                                  style="border-radius: 4px;padding-top: 5px;height: 25px;background-color: #ff0700;"><i-->
-                          <!--                            class="el-icon-star-on"></i></el-col>-->
                           <el-tag
                             v-if="item.iselite === true"
                             effect="dark"
@@ -288,14 +272,12 @@
                           </el-tag>
                         </el-col>
                       </el-row>
-                      <!--  -->
                       <el-row>
                         <el-col
                           :span="20"
                           @click="seePost(item)"
                           style="padding-left: 15px;height: 30px;text-align: left;border-radius: 6px;padding-top:15px"
                         >
-                          <!--  -->
                           <el-link
                             @click="seePost(item)"
                             style="font-size: 20px;font-weight: bolder;color: rgba(0,0,0,0.7)"
@@ -303,26 +285,6 @@
                             {{ item.title }}
                           </el-link>
                         </el-col>
-                        <!-- <el-col span="3" style="overflow: hidden">
-                          <el-dropdown split-button type="primary">
-                            <i id="starIcon" class="el-icon-star-off"></i>
-                            <template #dropdown>
-                            <el-dropdown-menu
-                              trigger="click"
-                              @command="handleCommand($event, item)"
-                              id="moreList"
-                            >
-                              <el-dropdown-item command="delPost"
-                                >删除</el-dropdown-item
-                              >
-                              <el-dropdown-item command="topPost"
-                                >置顶</el-dropdown-item
-                              >
-                            </el-dropdown-menu>
-                            </template>
-                          </el-dropdown>
-                        </el-col> -->
-
                         <el-col
                           :span="2"
                           style="padding-top: 1px;overflow: hidden;"
@@ -363,7 +325,6 @@
                             >
                               <i class="el-icon-more-outline"></i>
                             </el-button>
-                            <!-- slot="dropdown" -->
                             <template #dropdown>
                               <el-dropdown-menu>
                                 <el-dropdown-item command="delPost"
@@ -387,7 +348,6 @@
                       <el-row
                         style=" overflow: hidden;text-indent:2em;word-break: break-all;margin: -25px 0;padding-left:15px;padding-right:15px;height: 100px;text-align:left;font-size: 15px;font-weight: bold;"
                       >
-                        <!--  -->
                         <el-link
                           :underline="false"
                           @click="seePost(item)"
@@ -401,6 +361,9 @@
                   <p v-if="loading"></p>
                   <p v-if="noMore">没有更多了</p>
                 </div>
+              </div>
+              <div id="managepage" style="display: none">
+                <manageStu />
               </div>
             </el-col>
 
@@ -495,20 +458,21 @@ import {
   onBeforeMount,
   getCurrentInstance,
 } from "vue";
-import { useRouter, useRoute } from "vue-router";
+import { useRouter, useRoute, routerViewLocationKey } from "vue-router";
 import { useStore } from "vuex";
 import { ElMessage } from "element-plus";
-// import infiniteScroll from 'vue-infinite-scroll'
-// Vue.use(infiniteScroll)
-// import manageStu from '../userManage/manageStudents'
-// import videoList from '../Record/videolist2'
+import navbar from "../NavHeader";
+import manageStu from "../userManage/manageStudents";
+import videoList from "../Record/videolist2";
 
 export default {
   setup() {
     const { ctx } = getCurrentInstance();
     const axios = ctx.axios;
     const route = useRoute();
+    const router = useRouter();
     // const $route = unref(ctx.$router.currentRoute);
+
     const store = useStore();
     const data = reactive({
       //////自用
@@ -522,7 +486,7 @@ export default {
       count: 3, //post第一次加载
       busy: false,
       loading: false,
-      tabName: "second",
+      tabName: "first",
       pagesize: 4,
       currentPage: 1,
 
@@ -554,33 +518,34 @@ export default {
       return data.loading || noMore;
     });
 
+    const userInfo = computed(() => store.state.userInfo);
+
     onBeforeMount(() => {
-      // if (route.query.course.id != null) {
-      // this.classId = route.query.course.id;
-      // this.circle = route.query.course;
-      // if (route.query.course.rule == "") {
-      //   this.rules = "暂无规则";
+      // if (router.query.course.id != null) {
+      //   data.classId = router.query.course.id;
+      //   data.circle = router.query.course;
+      //   if (routerViewLocationKey.query.course.rule == "") {
+      //     data.rules = "暂无规则";
+      //   } else {
+      //     data.rules = router.query.course.rule;
+      //   }
+      //   window.localStorage.setItem("courserule", data.rules);
+      //   window.localStorage.setItem("coursename", data.circle.name);
+      //   window.localStorage.setItem("coursedetail", data.circle.detail);
+      //   window.localStorage.setItem("courseid", data.classId);
+      //   window.localStorage.setItem("coursetime", data.circle.time);
+      //   window.localStorage.setItem("coursecircle", data.tabName);
       // } else {
-      //   this.rules = route.query.course.rule;
-      // }
-      window.localStorage.setItem("courserule", data.rules);
-      window.localStorage.setItem("coursename", data.circle.name);
-      window.localStorage.setItem("coursedetail", data.circle.detail);
-      window.localStorage.setItem("courseid", data.classId);
-      window.localStorage.setItem("coursetime", data.circle.time);
-      window.localStorage.setItem("coursecircle", data.tabName);
-      // } else {
-      //   this.classId = window.localStorage.getItem("courseid");
-      //   this.circle.name = window.localStorage.getItem("coursename");
-      //   this.circle.detail = window.localStorage.getItem("coursedetail");
-      //   this.rules = window.localStorage.getItem("courserule");
-      //   this.tabName = window.localStorage.getItem("coursecircle");
+      //   data.classId = window.localStorage.getItem("courseid");
+      //   data.circle.name = window.localStorage.getItem("coursename");
+      //   data.circle.detail = window.localStorage.getItem("coursedetail");
+      //   data.rules = window.localStorage.getItem("courserule");
+      //   data.tabName = window.localStorage.getItem("coursecircle");
       // }
       getposts();
       isIn();
-      // data.userType = store.state.userInfo.usertype;
-      // data.userType = "student";
-      data.userInfo = store.state.userInfo;
+      data.userType = userInfo.usertype;
+      data.userInfo = userInfo;
     });
 
     const handleExpandChange = (row, expandRows) => {
@@ -609,10 +574,10 @@ export default {
 
     const seePost = (item) => {
       router.replace({
-        // name: "postpage",
-        // params: {
-        //   id: item.id,
-        // },
+        name: "postpage",
+        params: {
+          id: item.id,
+        },
       });
     };
 
@@ -624,7 +589,7 @@ export default {
       axios({
         method: "post",
         url: "/findpostbycourse",
-        // headers: { token: store.state.userInfo.token },
+        headers: { token: userInfo.token },
         headers: { token: "1" },
         data: {
           id: data.classId,
@@ -634,7 +599,7 @@ export default {
           data.posts = res.data.data;
           data.amount = data.posts.length;
         } else {
-           ElMessage({
+          ElMessage({
             showClose: true,
             type: "error",
             message: "获取圈子内容失败",
@@ -643,77 +608,72 @@ export default {
       });
     };
     const isIn = () => {
-      // this.axios({
-      //   method: "post",
-      //   url: "/isInCourse",
-      //   headers: { token: store.state.userInfo.token },
-      //   data: {
-      //     courseid: data.classId,
-      //   },
-      // }).then((res) => {
-      //   if (res.data.code == 1001) {
-      //     data.addOrNot = res.data.data; //undone
-      //     if (data.userType != "student") {
-      //       document
-      //         .getElementById("addbtn")
-      //         .setAttribute("style", "display:none");
-      //       document
-      //         .getElementById("appliedbtn")
-      //         .setAttribute("style", "display:none");
-      //       document
-      //         .getElementById("addedbtn")
-      //         .setAttribute("style", "display:none");
-      //     } else {
-      //       if (data.addOrNot == 1) {
-      //         document
-      //           .getElementById("addbtn")
-      //           .setAttribute("style", "display:none");
-      //         document.getElementById("appliedbtn").removeAttribute("style");
-      //         document
-      //           .getElementById("addedbtn")
-      //           .setAttribute("style", "display:none");
-      //       } else if (data.addOrNot == 0) {
-      //         document.getElementById("addbtn").removeAttribute("style");
-      //         document
-      //           .getElementById("appliedbtn")
-      //           .setAttribute("style", "display:none");
-      //         document
-      //           .getElementById("addedbtn")
-      //           .setAttribute("style", "display:none");
-      //       } else if (data.addOrNot == 2) {
-      //         document
-      //           .getElementById("addbtn")
-      //           .setAttribute("style", "display:none");
-      //         document
-      //           .getElementById("appliedbtn")
-      //           .setAttribute("style", "display:none");
-      //         document.getElementById("addedbtn").removeAttribute("style");
-      //       }
-      //     }
-      //   } else {
-      //      ElMessage({
-      //       showClose: true,
-      //       type: "error",
-      //       message: "获取学生与课程关系失败",
-      //     });
-      //   }
-      // });
+      axios({
+        method: "post",
+        url: "/isInCourse",
+        headers: { token: userInfo.token },
+        data: {
+          courseid: data.classId,
+        },
+      }).then((res) => {
+        if (res.data.code == 1001) {
+          data.addOrNot = res.data.data; //undone
+          if (data.userType != "student") {
+            document
+              .getElementById("addbtn")
+              .setAttribute("style", "display:none");
+            document
+              .getElementById("appliedbtn")
+              .setAttribute("style", "display:none");
+            document
+              .getElementById("addedbtn")
+              .setAttribute("style", "display:none");
+          } else {
+            if (data.addOrNot == 1) {
+              document
+                .getElementById("addbtn")
+                .setAttribute("style", "display:none");
+              document.getElementById("appliedbtn").removeAttribute("style");
+              document
+                .getElementById("addedbtn")
+                .setAttribute("style", "display:none");
+            } else if (data.addOrNot == 0) {
+              document.getElementById("addbtn").removeAttribute("style");
+              document
+                .getElementById("appliedbtn")
+                .setAttribute("style", "display:none");
+              document
+                .getElementById("addedbtn")
+                .setAttribute("style", "display:none");
+            } else if (data.addOrNot == 2) {
+              document
+                .getElementById("addbtn")
+                .setAttribute("style", "display:none");
+              document
+                .getElementById("appliedbtn")
+                .setAttribute("style", "display:none");
+              document.getElementById("addedbtn").removeAttribute("style");
+            }
+          }
+        } else {
+          ElMessage({
+            showClose: true,
+            type: "error",
+            message: "获取学生与课程关系失败",
+          });
+        }
+      });
     };
     const seeposts = () => {
       document.getElementById("postlist").removeAttribute("style");
-      document
-        .getElementById("statistics")
-        .setAttribute("style", "display:none");
       document
         .getElementById("managepage")
         .setAttribute("style", "display:none");
     };
 
     const seemanage = () => {
+      console.log("manage");
       document.getElementById("managepage").removeAttribute("style");
-      document
-        .getElementById("statistics")
-        .setAttribute("style", "display:none");
       document.getElementById("postlist").setAttribute("style", "display:none");
     };
 
@@ -721,212 +681,212 @@ export default {
       window.localStorage.setItem("coursecircle", data.tabName);
       window.localStorage.setItem("course", data.circle);
       router.push({
-        // name: 'videolist2',
+        name: "videolist2",
       });
     };
     const addStar = (item) => {
-      // this.axios({
-      //   method: "post",
-      //   url: "/changepostiselite",
-      //   headers: { token: store.state.userInfo.token },
-      //   data: {
-      //     id: item.id,
-      //   },
-      // }).then((res) => {
-      //   if (res.data.code == 1001) {
-      //     let staron = "starIcon" + item.id;
-      //     //document.getElementById(''+staron).setAttribute("class", "el-icon-star-on")//undone v-if
-      //      ElMessage({
-      //       showClose: true,
-      //       type: "success",
-      //       message: "修改成功",
-      //     });
-      //     data.posts = res.data.data;
-      //     data.amount = data.posts.length;
-      //   } else if (res.data.code == 3001) {
-      //      ElMessage({
-      //       showClose: true,
-      //       type: "error",
-      //       message: "无操作权限",
-      //     });
-      //   } else {
-      //      ElMessage({
-      //       showClose: true,
-      //       type: "error",
-      //       message: "设置失败",
-      //     });
-      //   }
-      // });
+      axios({
+        method: "post",
+        url: "/changepostiselite",
+        headers: { token: userInfo.token },
+        data: {
+          id: item.id,
+        },
+      }).then((res) => {
+        if (res.data.code == 1001) {
+          let staron = "starIcon" + item.id;
+          //document.getElementById(''+staron).setAttribute("class", "el-icon-star-on")//undone v-if
+          ElMessage({
+            showClose: true,
+            type: "success",
+            message: "修改成功",
+          });
+          data.posts = res.data.data;
+          data.amount = data.posts.length;
+        } else if (res.data.code == 3001) {
+          ElMessage({
+            showClose: true,
+            type: "error",
+            message: "无操作权限",
+          });
+        } else {
+          ElMessage({
+            showClose: true,
+            type: "error",
+            message: "设置失败",
+          });
+        }
+      });
     };
     const handleCommand = (command, item) => {
       if (command == "topPost") {
-        // this.axios({
-        //   method: "post",
-        //   url: "/changepostistop",
-        //   headers: { token: store.state.userInfo.token },
-        //   data: {
-        //     id: item.id,
-        //   },
-        // }).then((res) => {
-        //   if (res.data.code == 1001) {
-        //      ElMessage({
-        //       showClose: true,
-        //       type: "success",
-        //       message: "修改成功",
-        //     });
-        //     data.posts = res.data.data;
-        //     data.amount = data.posts.length;
-        //   } else if (res.data.code == 3001) {
-        //      ElMessage({
-        //       showClose: true,
-        //       type: "error",
-        //       message: "无操作权限",
-        //     });
-        //   } else {
-        //      ElMessage({
-        //       showClose: true,
-        //       type: "error",
-        //       message: "置顶失败",
-        //     });
-        //   }
-        // });
+        axios({
+          method: "post",
+          url: "/changepostistop",
+          headers: { token: userInfo.token },
+          data: {
+            id: item.id,
+          },
+        }).then((res) => {
+          if (res.data.code == 1001) {
+            ElMessage({
+              showClose: true,
+              type: "success",
+              message: "修改成功",
+            });
+            data.posts = res.data.data;
+            data.amount = data.posts.length;
+          } else if (res.data.code == 3001) {
+            ElMessage({
+              showClose: true,
+              type: "error",
+              message: "无操作权限",
+            });
+          } else {
+            ElMessage({
+              showClose: true,
+              type: "error",
+              message: "置顶失败",
+            });
+          }
+        });
       } else if (command == "delPost") {
-        // this.$confirm("确认删除该帖子?", "提示", {
-        //   confirmButtonText: "确定",
-        //   cancelButtonText: "取消",
-        //   type: "warning",
-        // }).then(() => {
-        //   this.axios({
-        //     method: "post",
-        //     url: "/deletepost",
-        //     headers: { token: store.state.userInfo.token },
-        //     data: {
-        //       id: item.id,
-        //     },
-        //   }).then((res) => {
-        //     if (res.data.code == 1001) {
-        //        ElMessage({
-        //         showClose: true,
-        //         type: "success",
-        //         message: "已删除",
-        //       });
-        //       data.posts = res.data.data;
-        //       data.amount = data.posts.length;
-        //     } else if (res.data.code == 3001) {
-        //        ElMessage({
-        //         showClose: true,
-        //         type: "error",
-        //         message: "无操作权限",
-        //       });
-        //     } else {
-        //        ElMessage({
-        //         showClose: true,
-        //         type: "error",
-        //         message: "删除失败",
-        //       });
-        //     }
-        //   });
-        // });
+        this.$confirm("确认删除该帖子?", "提示", {
+          confirmButtonText: "确定",
+          cancelButtonText: "取消",
+          type: "warning",
+        }).then(() => {
+          axios({
+            method: "post",
+            url: "/deletepost",
+            headers: { token: userInfo.token },
+            data: {
+              id: item.id,
+            },
+          }).then((res) => {
+            if (res.data.code == 1001) {
+              ElMessage({
+                showClose: true,
+                type: "success",
+                message: "已删除",
+              });
+              data.posts = res.data.data;
+              data.amount = data.posts.length;
+            } else if (res.data.code == 3001) {
+              ElMessage({
+                showClose: true,
+                type: "error",
+                message: "无操作权限",
+              });
+            } else {
+              ElMessage({
+                showClose: true,
+                type: "error",
+                message: "删除失败",
+              });
+            }
+          });
+        });
       }
     };
     const changeRule = () => {
-      // this.axios({
-      //   method: "post",
-      //   url: "/setrule",
-      //   headers: { token: store.state.userInfo.token },
-      //   data: {
-      //     cid: data.classId,
-      //     rule: data.newRule,
-      //   },
-      // }).then((res) => {
-      //   if (res.data.code == 1001) {
-      //     (data.changeRuleVisible = false),
-      //        ElMessage({
-      //         showClose: true,
-      //         type: "success",
-      //         message: "修改成功",
-      //       });
-      //     data.rules = res.data.data;
-      //     data.newRule = "";
-      //   } else {
-      //      ElMessage({
-      //       showClose: true,
-      //       type: "error",
-      //       message: "修改失败",
-      //     });
-      //   }
-      // });
+      axios({
+        method: "post",
+        url: "/setrule",
+        headers: { token: userInfo.token },
+        data: {
+          cid: data.classId,
+          rule: data.newRule,
+        },
+      }).then((res) => {
+        if (res.data.code == 1001) {
+          (data.changeRuleVisible = false),
+            ElMessage({
+              showClose: true,
+              type: "success",
+              message: "修改成功",
+            });
+          data.rules = res.data.data;
+          data.newRule = "";
+        } else {
+          ElMessage({
+            showClose: true,
+            type: "error",
+            message: "修改失败",
+          });
+        }
+      });
     };
     const post = () => {
       if (data.newTitle == "") {
-         ElMessage({
+        ElMessage({
           type: "warning",
           message: "请输入帖子标题",
         });
         return;
       } else if (data.newContent == "") {
-         ElMessage({
+        ElMessage({
           type: "warning",
           message: "请输入帖子内容",
         });
         return;
       }
-      // this.axios({
-      //   method: "post",
-      //   url: "/createpost",
-      //   headers: { token: store.state.userInfo.token },
-      //   data: {
-      //     courseid: data.classId,
-      //     title: data.newTitle,
-      //     detail: data.newContent,
-      //   },
-      // }).then((res) => {
-      //   if (res.data.code == 1001) {
-      //     (data.submitVisible = false),
-      //        ElMessage({
-      //         showClose: true,
-      //         type: "success",
-      //         message: "发布成功",
-      //       });
-      //     data.posts = res.data.data;
-      //     data.amount = data.posts.length;
-      //     data.activeNames = "";
-      //     data.newContent = "";
-      //     data.newTitle = "";
-      //   } else {
-      //      ElMessage({
-      //       showClose: true,
-      //       type: "error",
-      //       message: "发布失败",
-      //     });
-      //   }
-      // });
+      axios({
+        method: "post",
+        url: "/createpost",
+        headers: { token: userInfo.token },
+        data: {
+          courseid: data.classId,
+          title: data.newTitle,
+          detail: data.newContent,
+        },
+      }).then((res) => {
+        if (res.data.code == 1001) {
+          (data.submitVisible = false),
+            ElMessage({
+              showClose: true,
+              type: "success",
+              message: "发布成功",
+            });
+          data.posts = res.data.data;
+          data.amount = data.posts.length;
+          data.activeNames = "";
+          data.newContent = "";
+          data.newTitle = "";
+        } else {
+          ElMessage({
+            showClose: true,
+            type: "error",
+            message: "发布失败",
+          });
+        }
+      });
     };
 
     const addClass = () => {
-      // this.axios({
-      //   method: "post",
-      //   url: "/applyCourse",
-      //   headers: { token: store.state.userInfo.token },
-      //   data: {
-      //     courseid: data.classId,
-      //   },
-      // }).then((res) => {
-      //   if (res.data.code == 1001) {
-      //      ElMessagee({
-      //       showClose: true,
-      //       message: "成功申请课程",
-      //       type: "success",
-      //     }),
-      //       isIn();
-      //   } else {
-      //      ElMessage({
-      //       showClose: true,
-      //       message: "加入课程失败",
-      //       type: "error",
-      //     });
-      //   }
-      // });
+      axios({
+        method: "post",
+        url: "/applyCourse",
+        headers: { token: userInfo.token },
+        data: {
+          courseid: data.classId,
+        },
+      }).then((res) => {
+        if (res.data.code == 1001) {
+          ElMessagee({
+            showClose: true,
+            message: "成功申请课程",
+            type: "success",
+          }),
+            isIn();
+        } else {
+          ElMessage({
+            showClose: true,
+            message: "加入课程失败",
+            type: "error",
+          });
+        }
+      });
     };
     const loadMore = () => {
       data.busy = true;
@@ -957,12 +917,19 @@ export default {
       post,
       addClass,
       loadMore,
+      userInfo,
+      route,
+      router,
+      axios,
+      store,
+      ctx,
     };
   },
-  // components: {
-  //   manageStu,
-  //   videoList
-  // },
+  components: {
+    manageStu,
+    videoList,
+    navbar,
+  },
 };
 </script>
 
@@ -1029,5 +996,16 @@ export default {
 .el-icon-star-off,
 .el-icon-star-on {
   font-size: 15px;
+}
+
+.switch {
+  color: #606266;
+  cursor: pointer;
+}
+.switch:hover {
+  color: #409eff;
+}
+.switch:after {
+  border-color: #409eff;
 }
 </style>

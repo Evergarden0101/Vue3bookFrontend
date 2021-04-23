@@ -26,7 +26,7 @@ const routes = [
   },
   {
     path: "/incircle",
-    name: "InCircle",
+    name: "inCircle",
     component: InCircle,
   },
   {

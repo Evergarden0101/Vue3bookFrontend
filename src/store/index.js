@@ -4,8 +4,7 @@ import createPersistedState from "vuex-persistedstate";
 export default createStore({
   state() {
     return {
-      // userInfo: null, //用户状态集合
-      userInfo:{token:'1',usertype:"student"},
+      userInfo: null, //用户状态集合
       isLogin: false, //用户是否登录
       messageNum: 0,
     };
